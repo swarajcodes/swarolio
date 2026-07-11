@@ -1,0 +1,47 @@
+export const metadata = {
+  title: "Theming with Tailwind v4 design tokens",
+  summary:
+    "How this site does class-based dark mode with CSS variables and @theme inline.",
+  date: "2026-07-12",
+  tags: ["tailwind", "css", "nextjs"],
+};
+
+Tailwind v4 moved configuration into CSS. Here's how this site wires up
+its Batman/Spiderman dual theme with nothing but custom properties.
+
+## Tokens first
+
+Every color on this site is a CSS variable defined twice — once on
+`:root` (light) and once on `.dark`:
+
+```css
+:root {
+  --accent: #dc2626; /* web-slinger red */
+}
+
+.dark {
+  --accent: #f5c518; /* bat-signal yellow */
+}
+```
+
+## Exposing tokens to Tailwind
+
+The `@theme inline` block maps variables to utilities, so `text-accent`
+just works and flips automatically with the theme:
+
+```css
+@theme inline {
+  --color-accent: var(--accent);
+}
+```
+
+## Class-based dark mode
+
+One `@custom-variant` line replaces the old `darkMode: "class"` config:
+
+```css
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+A tiny inline script sets `.dark` on `<html>` before paint — no flash
+of the wrong theme.

@@ -25,7 +25,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="grid size-9 place-items-center rounded-md border border-border text-muted transition-colors hover:text-foreground hover:border-accent"
+      className="grid size-8 place-items-center rounded-full border border-border/70 text-muted transition-colors hover:border-accent hover:text-foreground"
     >
       {/* Render nothing icon-wise until mounted to avoid a hydration mismatch. */}
       {mounted && (dark ? <MoonIcon /> : <SunIcon />)}

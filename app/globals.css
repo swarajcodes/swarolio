@@ -1,28 +1,33 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* Class-based dark mode: toggling `.dark` on <html> switches themes,
    instead of Tailwind v4's default prefers-color-scheme. */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ---- Design tokens ---------------------------------------------------- */
+/* ---- Design tokens ----------------------------------------------------
+   Light = subtly Spiderman: cool blue-tinted neutrals, web-red accent.
+   Dark  = subtly Batman: near-black gotham grays, bat-signal yellow.   */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #71717a; /* secondary text */
-  --border: #e4e4e7;
-  --card: #fafafa;
-  --accent: #059669; /* emerald-600 */
+  --background: #f8fafc; /* slate-50, faint blue cast */
+  --foreground: #0f172a; /* slate-900, spidey-suit navy */
+  --muted: #64748b; /* slate-500, blue-leaning gray */
+  --border: #dde3ec;
+  --card: #ffffff;
+  --accent: #dc2626; /* web-slinger red */
   --accent-foreground: #ffffff;
+  --checker: rgba(30, 58, 138, 0.045); /* faint navy checker tiles */
 }
 
 .dark {
   --background: #09090b;
-  --foreground: #ededed;
-  --muted: #a1a1aa;
-  --border: #27272a;
+  --foreground: #e4e4e7;
+  --muted: #8e8e96;
+  --border: #26262b;
   --card: #101013;
-  --accent: #34d399; /* emerald-400, brighter on dark */
-  --accent-foreground: #052e1a;
+  --accent: #f5c518; /* bat-signal yellow */
+  --accent-foreground: #191302;
+  --checker: rgba(245, 197, 24, 0.032); /* faint yellow checker tiles */
 }
 
 /* Expose tokens to Tailwind as color / font utilities. */
@@ -48,7 +53,20 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  /* Checkerboard underlay — the glass navbar's backdrop blur distorts it. */
+  background-image: conic-gradient(
+    var(--checker) 25%,
+    transparent 0 50%,
+    var(--checker) 0 75%,
+    transparent 0
+  );
+  background-size: 48px 48px;
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
 }
