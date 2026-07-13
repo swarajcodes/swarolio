@@ -5,6 +5,7 @@ import { SiteNav } from "@/components/site-nav";
 import { Footer } from "@/components/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Cursor } from "@/components/cursor";
+import { Preloader } from "@/components/preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,12 +51,14 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="min-h-full">
+        <Preloader />
         <SmoothScroll />
         <Cursor />
         <SiteNav />
-        {/* pt offsets the fixed floating navbar */}
-        <main className="flex-1 pt-20">{children}</main>
+        {/* min-h-dvh keeps short pages (About/Contact) at least one viewport
+            tall so the footer doesn't crowd the content above it. */}
+        <main className="min-h-dvh pt-20">{children}</main>
         <Footer />
       </body>
     </html>
