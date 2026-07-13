@@ -1,7 +1,12 @@
+import { Reveal } from "./reveal";
+
 export function Footer() {
   return (
     <footer className="border-t border-border py-8">
-      <div className="container flex flex-col items-center justify-between gap-3 sm:flex-row">
+      <Reveal
+        y={12}
+        className="container flex flex-col items-center justify-between gap-3 sm:flex-row"
+      >
         <p className="font-mono text-xs text-muted">
           <span className="text-accent">~/</span>swarolio — Swaraj Mohapatra
         </p>
@@ -10,18 +15,20 @@ export function Footer() {
             href="https://github.com/swarajcodes"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor="link"
             className="text-muted transition-colors hover:text-accent"
           >
             github
           </a>
           <a
             href="mailto:swaraj081@gmail.com"
+            data-cursor="link"
             className="text-muted transition-colors hover:text-accent"
           >
             email
           </a>
         </div>
-      </div>
+      </Reveal>
     </footer>
   );
 }

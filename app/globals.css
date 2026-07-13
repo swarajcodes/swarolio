@@ -70,3 +70,9 @@ body {
   background: var(--accent);
   color: var(--accent-foreground);
 }
+
+/* Hide the native cursor once the custom GSAP cursor takes over (desktop only). */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
